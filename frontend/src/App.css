@@ -1,0 +1,405 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700");
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+/* ---------------------------
+   Theme variables (colors)
+   --------------------------- */
+:root {
+  --font-roboto: "Roboto Slab", serif;
+  --font-raleway: "Raleway", sans-serif;
+
+  --bg: #212426;
+  --card-bg: #1f2123;
+  --panel: #343739;
+  --text: #f0f0f0;
+  --muted: #a1a1a1;
+  --accent: #f9d3b4;
+}
+
+/* ---------------------------
+   Base
+   --------------------------- */
+body {
+  font-family: var(--font-roboto);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 0.9px;
+  background: linear-gradient(
+    90deg,
+    rgba(249, 211, 180, 1) 0%,
+    rgba(249, 211, 180, 0) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+}
+
+/* ---------------------------
+   Search bar
+   --------------------------- */
+.search {
+  width: 71%;
+  margin: 4rem 0 2rem;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  border-radius: 3rem;
+  background: var(--card-bg);
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+}
+
+.search input {
+  flex: 1;
+  font-size: 1.5rem;
+  font-family: var(--font-raleway);
+  font-weight: 500;
+  padding-right: 1rem;
+  outline: none;
+  color: var(--text);
+  background: transparent;
+}
+
+.search input::placeholder {
+  color: var(--muted);
+}
+
+.search img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+/* ---------------------------
+   Empty / error
+   --------------------------- */
+.empty {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty h2,
+.empty h3 {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-family: var(--font-raleway);
+}
+
+/* ---------------------------
+   Cards container
+   --------------------------- */
+.container {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---------------------------
+   Movie card (main)
+   --------------------------- */
+.movie {
+  width: 310px;
+  margin: 1.5rem;
+  border-radius: 4px; /* sharper corners */
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s;
+}
+
+.movie:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0px 30px 30px -12px rgba(0, 0, 0, 0.6);
+}
+
+.movie img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie .year {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.45);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: var(--font-raleway);
+  font-size: 0.95rem;
+  z-index: 4;
+}
+
+/* More padding for title */
+.movie-info {
+  background-color: var(--panel);
+  padding: 18px 26px; /* was 16px 24px */
+}
+
+.movie-info span {
+  display: inline-block;
+  font-family: var(--font-raleway);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.movie-title {
+  padding: 10px;
+}
+
+.movie-info h3 {
+  margin-top: 6px;
+  font-family: var(--font-roboto);
+  color: var(--accent);
+  line-height: 1.15;
+}
+
+/* ---------------------------
+   Floating action buttons
+   --------------------------- */
+.movie-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 6;
+  pointer-events: auto;
+}
+
+.btn {
+  padding: 8px 12px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-raleway);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--panel); /* solid background */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+  transition: transform 0.15s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-watchlist {
+  color: var(--accent);
+}
+
+.btn-watched {
+  color: var(--muted);
+}
+
+.btn:hover {
+  background: rgba(249, 211, 180, 0.15);
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* Hover-only behavior for desktop */
+@media (hover: hover) and (pointer: fine) {
+  .movie-actions {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    pointer-events: none;
+  }
+  .movie:hover .movie-actions {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+
+/* Always visible on touch devices */
+@media (hover: none) {
+  .movie-actions {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .btn {
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+}
+
+.btn:focus {
+  outline: 2px solid rgba(249,211,180,0.22);
+  outline-offset: 3px;
+}
+
+/* ---------------------------
+   Header, icons, auth form
+   --------------------------- */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-icon,
+.signout-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.form-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.form-box {
+  background: var(--card-bg);
+  padding: 3rem 2.5rem;
+  border-radius: 8px; /* slightly sharper */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  width: 400px;
+  max-width: 90%;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-box h2 {
+  font-size: 1.75rem;
+  text-align: center;
+  color: var(--accent);
+}
+
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-box input {
+  padding: 0.9rem 1rem;
+  font-size: 1.05rem;
+  border-radius: 6px;
+  background: #2f3133;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.form-box input::placeholder {
+  color: var(--muted);
+}
+
+.form-box button {
+  padding: 0.9rem;
+  background: var(--accent);
+  color: var(--card-bg);
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.18s;
+  border: none;
+}
+
+.form-box button:hover {
+  background: #e6b891;
+}
+
+.form-box p {
+  text-align: center;
+  color: var(--text);
+}
+
+.form-box span {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.close-btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.close-btn:hover {
+  background-color: rgba(255,255,255,0.03);
+}
+
+/* ---------------------------
+   Responsive tweaks
+   --------------------------- */
+@media screen and (max-width: 900px) {
+  .search {
+    width: 90%;
+  }
+  .movie {
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app {
+    padding: 4rem 2rem;
+  }
+  .search input {
+    font-size: 1rem;
+  }
+  .movie {
+    width: 100%;
+    margin: 1rem 0.5rem;
+  }
+}
