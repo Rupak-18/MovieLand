@@ -7,7 +7,7 @@ import SearchIcon from "./search.svg";
 
 const API_KEY = "17e094fe4d43dd69063e8122d425a71a";
 const API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`;
-const BACKEND_URL = "http://localhost:5500/api/v1/auth";
+const BACKEND_URL = `${(import.meta.env.VITE_API_URL || "http://localhost:5500")}/api/v1/auth`;
 
 const App = () => {
   const [movies, setMovies] = useState([]);
