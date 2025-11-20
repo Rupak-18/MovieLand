@@ -6,7 +6,7 @@ const MovieCard = ({ movie, user }) => {
   const placeholderImage =
     "https://i.pinimg.com/564x/53/4e/b0/534eb05cdd10f07cd2bcda919c6c84e2.jpg";
 
-  const BACKEND_URL = "http://localhost:5500/api/v1/movies";
+ const BACKEND_URL = `${(import.meta.env.VITE_API_URL || "http://localhost:5500")}/api/v1/auth`;
 
   const handleAddMovie = async (status) => {
     if (!user) {
