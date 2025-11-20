@@ -5,6 +5,7 @@ import cors from "cors";
 import { PORT } from './config/env.js';
 
 import authRouter from "./routes/auth.routes.js";
+import movieListRouter from "./routes/movieList.routes.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import connectToDatabase from "./databse/mongodb.js";
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/movies", movieListRouter);
 
 // Error handling middleware (last)
 app.use(errorMiddleware);
