@@ -7,7 +7,7 @@ const MovieListView = ({ status, user }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const BACKEND_URL = `${(import.meta.env.VITE_API_URL || "http://localhost:5500")}/api/v1/auth`;
+  const BACKEND_URL = `${(import.meta.env.VITE_API_URL || "http://localhost:5500")}/api/v1/movies`;
 
   const fetchMovies = async () => {
     if (!user) {
